@@ -88,7 +88,9 @@ void dispTask(void *arg) {
 
   for (;;) {
     xQueueReceive(qh,&adc,portMAX_DELAY);
+#if CFG_OLED
     barGraph(adc);
+#endif
     ledcWrite(0,adc*255/4095);
   }
 }
